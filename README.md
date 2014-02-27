@@ -3,38 +3,32 @@ sbtrans
 
 A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
-What is transliteration?
-------------------------
+## What is transliteration?
 
 (add definition)
 
 
-A Sample Transliteration Scheme
--------------------------------
+## A Sample Transliteration Scheme
 
 (Describe Esperanto X-system)
 
 
-Using this Library
-------------------
+## Using this Library
 
 (How to transliterate text)
 
 
-How to Add a Scheme
--------------------
+## How to Add a Scheme
 
 (Describe rule format)
 
 
-Contact Us
-----------
+## Contact Us
 
 (How to request a scheme be added)
 
 
-License
--------
+## License
 
 MIT
 
