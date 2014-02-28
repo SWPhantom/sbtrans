@@ -25,7 +25,7 @@ A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
 ## Contact Us
 
-(How to request a scheme be added)
+You can reach us through our Facebook group ComplingFTW or our Facebook group email address: complingftw@groups.facebook.com.
 
 
 ## License
