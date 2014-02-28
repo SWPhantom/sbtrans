@@ -15,7 +15,7 @@ A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
 ## Using this Library
 
-(How to transliterate text)
+it's all in the source code, yo
 
 
 ## How to Add a Scheme
@@ -30,7 +30,7 @@ A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
 ## License
 
-MIT
+MIT 
 
 (Yes, we appreciate the irony.)
 
