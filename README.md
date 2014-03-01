@@ -37,7 +37,7 @@ it's all in the source code, yo
 
 ## Contact Us
 
-You can reach us through our Facebook group ComplingFTW or our Facebook group email address: complingftw@groups.facebook.com.
+You can reach us through our Facebook group ComplingFTW.
 
 
 ## License
