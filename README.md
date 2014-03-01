@@ -5,7 +5,7 @@ A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
 ## What is transliteration?
 
-(add definition)
+Transliteration is the conversion of a text from one script or alphabet to another. For instance, the Greek phrase "Ελληνική Δημοκρατία" 'Hellenic Republic' can be transliterated as "Ellēnikē Dēmokratia" by substituting Greek letters for Latin letters.
 
 
 ## A Sample Transliteration Scheme
