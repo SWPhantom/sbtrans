@@ -10,7 +10,19 @@ A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
 
 ## A Sample Transliteration Scheme
 
-(Describe Esperanto X-system)
+Esperanto letters with diacritics can be converted to plain text by changing the letter to its standard Latin form followed by an x. 
+
+Cx
+Ĉ
+
+cx
+ĉ
+
+Gx
+Ĝ
+
+gx
+ĝ
 
 
 ## Using this Library
