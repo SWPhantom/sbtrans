@@ -6,6 +6,17 @@ Created by ComplingFTW at UCSB
 import json
 
 def read_rules(filename):
+  """
+  Read the contents of the json file called filename and return
+  the data structure. Contains a structure like (imagine a trivial
+  capitalization file):
+  
+  [
+     ['a', 'A'],
+     ['b', 'B']  
+  ]
+  
+  """
   return json.load(open(filename))
 
 def transliterate(rules, input_text):
