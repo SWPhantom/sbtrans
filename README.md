@@ -27,7 +27,7 @@ gx
 
 ## Using this Library
 
-(How to transliterate text)
+it's all in the source code, yo
 
 
 ## How to Add a Scheme
@@ -42,7 +42,7 @@ gx
 
 ## License
 
-MIT
+MIT 
 
 (Yes, we appreciate the irony.)
 
