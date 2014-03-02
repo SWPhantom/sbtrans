@@ -1,7 +1,7 @@
 """
 reverse_json_rules.py - reverse a transliteration scheme
 
-You need to run this file with python taking two arguemnts.
+To run this script as a standalone file, pass two arguemnts:
 
 1. the first list of json rules
 2. the second list of json rules you want to create
@@ -11,17 +11,41 @@ your out file to end up !
 
 """
 import json
-import sys
 
-rules = json.load(open(sys.argv[1]))
-outfile_name = sys.argv[2]
+def reverse_rules(rules):
+  """
+    Convert:
 
-new_rules = []
+    [ 
+       ['a', 'A'],
+       ['b', 'B'],
+       ['c', 'C']
+    ]
+    
+    To: 
 
-for before, after in rules:
-  new_rules.append([after, before])
+    [ 
+       ['A', 'a'],
+       ['B', 'b'],
+       ['C', 'c']
+    ]
 
-outfile = open(outfile_name, "w")
-outfile.write(json.dumps(new_rules, indent=2))
-outfile.close()
+    @TODO: what if the rules are not reversible? 
+  """
+  return [(b,a) for a,b in rules] 
+
+if __name__ == "__main__":
+  import sys
+
+  if len(sys.argv) != 3:
+    print 'Usage: python reverse_json_rules.py <./path/to/input.json> <path/to/output.json>'
+    exit()
+  
+  rules          = json.load(open(sys.argv[1]))
+  reversed_rules = reverse_rules(rules)
+
+  output_path = sys.argv[2]
+  out = open(output_path, "w")
+  out.write(json.dumps(reversed_rules, indent=2))
+  out.close()
 
