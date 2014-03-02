@@ -1,16 +1,71 @@
 import os
 import sys
+import json
 
-# iterate through subdirectories
-for subdir, dirs, files in os.walk('.'):
-  print subdir
-  #for file in files:
-  #  print subdir+'/'+file
+def parse_textual_rules(rule_string):
+  """
+  Given an input Unicode string with transliteration 
+    rules in the format:
 
-  # iterate through .txt files
+      a
+      A
+      
+      b
+      B
+      
+      c
+      C
 
-    # read file name and extract before and after names
+   Return a nested array with those rules in this structure:
 
-    # check to see if appropriate .json files exist
+      [
+        ['a', 'A'],
+        ['b', 'B'],
+        ['c', 'C']
+      ]
 
-      # if not, generate them
+  """
+  chunks = rule_string.strip().split('\n\n')
+  rules = []
+
+  for chunk in chunks:
+    rules.append(chunk.splitlines()) 
+
+  return rules
+
+def ruleset_name_from_path(path):
+  """ 
+
+    >>> parse_textual_filename('roman2hiragana.txt')
+    ('roman', 'hiragana')
+
+  return a tuple containing (before, after)
+
+  @@ TODO: This approach fails if the name of the before or 
+    after scheme contains a literal '2'!
+  """ 
+  os.split(path)
+  base = left2right.strip().replace('.txt', '')
+  left, right = base.split('2')
+  return (left, right) 
+
+def save_rules(rules, path):
+  """
+  Writes out rules as formatted JSON to path.  
+  """
+  open(path, 'w').write(json.dumps(rules, indent=2))
+
+if __name__ == "__main__":
+
+  for subdir, dirs, files in os.walk('rules/'):
+    for filename in files: 
+      if filename.endswith('.txt'): # read file name and extract before and after names
+        rules_string = open(subdir + os.sep + filename).read().decode('utf-8')
+        rules = parse_textual_rules(rules_string)
+
+        path = os.sep.join([subdir, filename])
+        json_path = path.replace('.txt', '.json')
+
+        save_rules(rules, json_path)
+    
+
