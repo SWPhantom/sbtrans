@@ -1,4 +1,4 @@
-sbtrans
+<img src=http://i.imgur.com/tDDGeIw.png>
 =======
 
 A minimalist (ha, ha) transliteration library built by UCSB ComplingFTW!
