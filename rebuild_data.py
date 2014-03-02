@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+from sbtrans import * 
 
 def parse_textual_rules(rule_string):
   """
@@ -31,6 +32,8 @@ def parse_textual_rules(rule_string):
   for chunk in chunks:
     rules.append(chunk.splitlines()) 
 
+  rules = order_rules(rules)
+ 
   return rules
 
 def ruleset_name_from_path(path):
@@ -53,11 +56,10 @@ def save_rules(rules, path):
   """
   Writes out rules as formatted JSON to path.  
   """
-  open(path, 'w').write(json.dumps(rules, indent=2))
+  open(path, 'w').write(json.dumps(rules, indent=2) + "\n")
 
-if __name__ == "__main__":
-
-  for subdir, dirs, files in os.walk('rules/'):
+def generate_all(rules_directory='rules/'):
+  for subdir, dirs, files in os.walk(rules_directory):
     for filename in files: 
       if filename.endswith('.txt'): # read file name and extract before and after names
         rules_string = open(subdir + os.sep + filename).read().decode('utf-8')
@@ -68,4 +70,5 @@ if __name__ == "__main__":
 
         save_rules(rules, json_path)
     
-
+if __name__ == "__main__":
+  generate_all()

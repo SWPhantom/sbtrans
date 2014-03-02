@@ -5,6 +5,35 @@ Created by ComplingFTW at UCSB
 """
 import json
 
+def order_rules(rules):
+  """
+  Transliteration rules must be ordered by the length of the 
+  input rules, to prevent "rule bleeding".
+
+  Consider the ruleset:  
+
+  [
+    ["n", "N"],   # rule 1
+    ["na", "NA"]  # rule 2
+  ]
+
+  Consider what happens If this ruleset is applied to the 
+  string "nana":
+
+  Apply rule 1:  
+  
+    "nana" -> "NaNa"
+
+  Now rule 2 is blocked!
+
+  The solution is to reorder the rules such that the longest
+  rules with the longest input sides are run first.
+ 
+  """
+  bylength = sorted([(len(left), left, right) for left, right in rules])
+  ordered = [(left, right) for length, left, right in bylength]
+  return list(reversed(ordered))
+  
 def reverse_rules(rules):
   """
     Convert:
