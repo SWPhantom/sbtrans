@@ -8,7 +8,7 @@ import json
 def order_rules(rules):
   """
   Transliteration rules must be ordered by the length of the 
-  input rules, to prevent "rule bleeding".
+  "before" side of each, to prevent rule bleeding.
 
   Consider the ruleset:  
 
@@ -27,7 +27,8 @@ def order_rules(rules):
   Now rule 2 is blocked!
 
   The solution is to reorder the rules such that the longest
-  rules with the longest input sides are run first.
+  rules with the longest input sides are run first. (In this
+  example, rule 2 should precede rule 1.
  
   """
   bylength = sorted([(len(left), left, right) for left, right in rules])
@@ -83,7 +84,7 @@ def transliterate(rules, input_text):
     text = text.replace(before, after) 
   return text
 
-def process_file(rules_filename, input_filename, output_filename):
+def transliterate_file(rules_filename, input_filename, output_filename):
   """
   """
   rules = read_rules(rules_filename)
