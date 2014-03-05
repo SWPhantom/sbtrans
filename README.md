@@ -10,7 +10,9 @@ Transliteration is the conversion of a text from one script or alphabet to anoth
 
 ## Using this Library
 
-it's all in the source code, yo
+It's all in the source code, yo. For now.
+
+Also, more instructions coming soon.
 
 
 ## How to Add a Scheme
