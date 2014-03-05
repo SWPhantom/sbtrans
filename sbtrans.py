@@ -4,6 +4,7 @@ sbtrans.py - apply a set of transliteration rules to text
 Created by ComplingFTW at UCSB
 """
 import json
+import os
 
 def order_rules(rules):
   """
@@ -84,10 +85,11 @@ def transliterate(rules, input_text):
     text = text.replace(before, after) 
   return text
 
-def transliterate_file(rules_filename, input_filename, output_filename):
+def transliterate_file(language, ruleset_name, input_filename, output_filename):
   """
   """
-  rules = read_rules(rules_filename)
+  rulefile_path = os.sep.join(['rules', language, ruleset_name]) +  '.json'
+  rules = read_rules(rulefile_path)
   input_text = open(input_filename).read().decode('utf-8')
   output_handle = open(output_filename, 'w')
   transliterated_text = transliterate(rules, input_text)
