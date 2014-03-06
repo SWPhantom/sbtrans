@@ -1,10 +1,12 @@
 #!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
 """
 sbtrans.py - apply a set of transliteration rules to text
 
 Created by ComplingFTW at UCSB
 """
 import json
+import sys
 import os
 
 def order_rules(rules):
@@ -37,28 +39,6 @@ def order_rules(rules):
   ordered = [(left, right) for length, left, right in bylength]
   return list(reversed(ordered))
   
-def reverse_rules(rules):
-  """
-    Convert:
-
-    [ 
-       ['a', 'A'],
-       ['b', 'B'],
-       ['c', 'C']
-    ]
-    
-    To: 
-
-    [ 
-       ['A', 'a'],
-       ['B', 'b'],
-       ['C', 'c']
-    ]
-
-    @TODO: what if the rules are not reversible? 
-  """
-  return [(b,a) for a,b in rules] 
-
 def read_rules(filename):
   """
   Read the contents of the json file called filename and return
@@ -74,44 +54,72 @@ def read_rules(filename):
   """
   return json.load(open(filename))
 
-def transliterate(rules, input_text):
+def transliterate(rule_list, input_text):
   """
-  apply the before, after transliteration rules in 
-  the list "rules" to input_text
+  Apply the before, after transliteration rules in 
+  rule_list to input_text.
 
   Returns a Unicode string.
   """
   text = input_text
-  for before, after in rules:
+  for before, after in rule_list:
     text = text.replace(before, after) 
   return text
 
-def transliterate_file(language, ruleset_name, input_filename, output_filename):
+def transliterate_file(ruleset, input_filehandle=sys.stdin, output_filehandle=sys.stdout):
   """
+  Basic usage:
+  
+      $ python sbtrans.py <rule_file> <input_file> <output_file>
+
+  E.g.: 
+
+      $ python sbtrans.py rules/georgian/mkhedruli.json test/georgian/cities.txt test/georgian/cities-roman.txt
+
+  This will read rules from rules/georgian/mkhedruli.json, input text from test/georgian/cities.txt,  
+  and write it to test/georgian/cities-roman.txt.
+
+  Advanced usage:
+
+  Read text to be transliterated from STDIN and print it to STDOUT:
+  
+      $ echo 'Cxu vi parolas?' | python sbtrans.py rules/esperanto/x2full.json 
+      Ĉu vi parolas?
+
+  This function is not recommended for use from the interactive Python prompt -- use 
+  transliterate() and normal file I/O.
   """
-  rulefile_path = os.sep.join(['rules', language, ruleset_name]) +  '.json'
-  rules = read_rules(rulefile_path)
-  input_text = open(input_filename).read().decode('utf-8')
-  output_handle = open(output_filename, 'w')
-  transliterated_text = transliterate(rules, input_text)
-  output_handle.write(transliterated_text.encode('utf-8'))
-  output_handle.close()
+  input_text = input_filehandle.read().decode('utf-8')
+  transliterated = transliterate(ruleset, input_text)
+  output_filehandle.write(transliterated.encode('utf-8'))
 
 if __name__ == "__main__":
   import sys
-  from optparse import OptionParser
 
-  parser = OptionParser(description="sbtrans.py - apply transliteration rules to text")
+  args = sys.argv
+  args_count = len(args)
 
-  parser.add_option("-o", "--output", dest="output_file",
-                    help="write transliterated content to OUTPUT_FILE",   metavar="OUTPUT_FILE")
-  parser.add_option("-i", "--input", dest="input_file",
-                    help="read untransliterated content from INPUT_FILE", metavar="INPUT_FILE")
+  if args_count == 1:
+    print "Usage: python sbtrans.py [RULES] [INFILE] [OUTFILE]"
+    exit()
+    
+  rule_path = sys.argv[1]
+  rules = read_rules(rule_path)
 
-  (options, args) = parser.parse_args()
+  if args_count == 2: # from STDIN to STDOUT
+    transliterate_file(rules)
 
-  parser.print_help()
-  #print options
-  #print args
+  elif args_count == 3: # from INFILE to STDOUT 
+    INFILE = sys.argv[2]
+    input_filehandle=open(INFILE)
+
+    transliterate_file(rules, input_filehandle=open(INFILE))
+
+  elif args_count == 4: # from INFILE to OUTFILE
+    INFILE, OUTFILE = sys.argv[2:3]
+    input_filehandle=open(INFILE)
+    output_filehandle=open(OUTFILE, 'w')
+
+    transliterate_file(rules, input_filehandle, output_filehandle)
 
 
