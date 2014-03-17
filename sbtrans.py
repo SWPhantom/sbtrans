@@ -116,7 +116,7 @@ if __name__ == "__main__":
     transliterate_file(rules, input_filehandle=open(INFILE))
 
   elif args_count == 4: # from INFILE to OUTFILE
-    INFILE, OUTFILE = sys.argv[2:3]
+    INFILE, OUTFILE = sys.argv[2:4]
     input_filehandle=open(INFILE)
     output_filehandle=open(OUTFILE, 'w')
 
