@@ -1,17 +1,11 @@
-a
-あ
+chi
+ち
 
-i
-い
+tsu
+つ
 
-u
-う
-
-e
-え
-
-o
-お
+shi
+し
 
 ka
 か
@@ -28,20 +22,56 @@ ke
 ko
 こ
 
+ga
+が
+
+gi
+ぎ
+
+gu
+ぐ
+
+ge
+げ
+
+go
+ご
+
+sa
+さ
+
+su
+す
+
+se
+せ
+
+so
+そ
+
 ta
 た
-
-chi
-ち
-
-tsu
-つ
 
 te
 て
 
 to
 と
+
+da
+だ
+
+ji
+じ
+
+zu
+づ
+
+de
+で
+
+do
+ど
 
 na
 な
@@ -87,6 +117,36 @@ he
 
 ho
 ほ
+
+ba
+ば
+
+bi
+び
+
+bu
+ぶ
+
+be
+べ
+
+bo
+ぼ
+
+pa
+ぱ
+
+pi
+ぴ
+
+pu
+ぷ
+
+pe
+ぺ
+
+po
+ぽ
 
 ra
 ら
@@ -588,3 +648,18 @@ tha
 
 fe 
 ふぇ 
+
+a
+あ
+
+i
+い
+
+u
+う
+
+e
+え
+
+o
+お
