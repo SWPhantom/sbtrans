@@ -52,7 +52,7 @@ def read_rules(filename):
   ]
   
   """
-  return json.load(open(filename))
+  return order_rules(json.load(open(filename)))
 
 def transliterate(rule_list, input_text):
   """
